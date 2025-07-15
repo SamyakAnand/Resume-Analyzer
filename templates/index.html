@@ -10,7 +10,6 @@
       min-height: 100vh;
       color: #f8f9fa;
       font-family: 'Segoe UI', sans-serif;
-      transition: background 1s ease;
     }
     .card {
       border-radius: 12px;
@@ -24,7 +23,6 @@
       padding: 20px;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       text-align: center;
     }
     .header h2 {
@@ -40,33 +38,28 @@
     .header p {
       margin: 5px 0 0;
       font-size: 1.1rem;
-      color: #f1f1f1;
     }
     @keyframes glow {
-      from {
-        text-shadow: 0 0 5px rgba(255,255,255,0.6),
-                     0 0 10px rgba(255,138,0,0.8),
-                     0 0 15px rgba(255,138,0,0.8);
-      }
-      to {
-        text-shadow: 0 0 10px rgba(255,255,255,1),
-                     0 0 20px rgba(255,138,0,1),
-                     0 0 25px rgba(255,138,0,1);
-      }
+      from { text-shadow: 0 0 5px rgba(255,255,255,0.6),
+                        0 0 10px rgba(255,138,0,0.8),
+                        0 0 15px rgba(255,138,0,0.8); }
+      to   { text-shadow: 0 0 10px rgba(255,255,255,1),
+                        0 0 20px rgba(255,138,0,1),
+                        0 0 25px rgba(255,138,0,1); }
     }
     textarea.form-control,
     input.form-control {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
       color: #f8f9fa;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255,255,255,0.3);
     }
     textarea.form-control::placeholder,
     input.form-control::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.6);
     }
     textarea.form-control:focus,
     input.form-control:focus {
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255,255,255,0.15);
       color: #fff;
       border-color: #ff8a00;
       box-shadow: 0 0 0 0.2rem rgba(255,138,0,.25);
@@ -93,12 +86,10 @@
       transform: scale(1.05);
     }
     .table-striped tbody tr:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: background-color 0.3s ease;
+      background-color: rgba(255,255,255,0.1);
     }
     .badge.bg-success {
       background: linear-gradient(45deg, #00c6ff, #0072ff);
-      font-size: 0.9rem;
     }
     .footer {
       font-size: 0.85rem;
@@ -106,9 +97,15 @@
       text-align: center;
       margin-top: 30px;
     }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #ff8a00, #e52e71);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.3);
     }
   </style>
 </head>
@@ -120,18 +117,15 @@
       <p>Upload resumes, paste JD, and get similarity scores!</p>
     </div>
     <div class="card-body">
-
       <form method="POST" enctype="multipart/form-data">
         <div class="mb-3">
           <label class="form-label fw-semibold">Paste Job Description</label>
           <textarea name="jd_text" class="form-control" rows="4" placeholder="Enter job description here..." required></textarea>
         </div>
-
         <div class="mb-3">
           <label class="form-label fw-semibold">Upload Resumes (PDF or DOCX)</label>
           <input type="file" name="resumes" class="form-control" multiple required>
         </div>
-
         <div class="d-grid">
           <button type="submit" class="btn btn-primary btn-lg">🚀 Analyze Resumes</button>
         </div>
@@ -169,10 +163,10 @@
   </div>
 
   <div class="footer mt-4">
-    Built with Flask, NLTK, scikit-learn and ❤️ &middot; <a href="https://github.com/SamyakAnand" style="color: #f9d342;">GitHub</a>
+    Built with Flask, NLTK, scikit-learn and ❤️ &middot;
+    <a href="https://github.com/SamyakAnand" style="color: #f9d342;">GitHub</a>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
