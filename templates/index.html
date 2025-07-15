@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📄 AI Resume Analyzer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      min-height: 100vh;
+      color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 1s ease;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      animation: fadeIn 1s ease;
+    }
+    .header {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      padding: 20px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .header h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(255,255,255,0.6),
+                   0 0 10px rgba(255,138,0,0.8),
+                   0 0 15px rgba(255,138,0,0.8);
+      animation: glow 2s infinite alternate;
+    }
+    .header p {
+      margin: 5px 0 0;
+      font-size: 1.1rem;
+      color: #f1f1f1;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(255,255,255,0.6),
+                     0 0 10px rgba(255,138,0,0.8),
+                     0 0 15px rgba(255,138,0,0.8);
+      }
+      to {
+        text-shadow: 0 0 10px rgba(255,255,255,1),
+                     0 0 20px rgba(255,138,0,1),
+                     0 0 25px rgba(255,138,0,1);
+      }
+    }
+    textarea.form-control,
+    input.form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #f8f9fa;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    textarea.form-control::placeholder,
+    input.form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    textarea.form-control:focus,
+    input.form-control:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border-color: #ff8a00;
+      box-shadow: 0 0 0 0.2rem rgba(255,138,0,.25);
+    }
+    input[type="file"]::file-selector-button {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    input[type="file"]::file-selector-button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #e52e71, #ff8a00);
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      transition: transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.05);
+    }
+    .table-striped tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .badge.bg-success {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      font-size: 0.9rem;
+    }
+    .footer {
+      font-size: 0.85rem;
+      color: #ddd;
+      text-align: center;
+      margin-top: 30px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+<div class="container py-5">
+  <div class="card">
+    <div class="header">
+      <h2>📄 AI Resume Analyzer</h2>
+      <p>Upload resumes, paste JD, and get similarity scores!</p>
+    </div>
+    <div class="card-body">
+
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Paste Job Description</label>
+          <textarea name="jd_text" class="form-control" rows="4" placeholder="Enter job description here..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Upload Resumes (PDF or DOCX)</label>
+          <input type="file" name="resumes" class="form-control" multiple required>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">🚀 Analyze Resumes</button>
+        </div>
+      </form>
+
+      {% if results %}
+      <hr class="text-light">
+      <h5 class="mt-4">📊 Results (Highest score first)</h5>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped table-hover mt-2">
+          <thead>
+            <tr>
+              <th>Filename</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Score (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for res in results %}
+            <tr>
+              <td>{{ res.filename }}</td>
+              <td>{{ res.name or '-' }}</td>
+              <td>{{ res.email or '-' }}</td>
+              <td>{{ res.phone or '-' }}</td>
+              <td><span class="badge bg-success">{{ res.score }}</span></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="footer mt-4">
+    Built with Flask, NLTK, scikit-learn and ❤️ &middot; <a href="https://github.com/SamyakAnand" style="color: #f9d342;">GitHub</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
