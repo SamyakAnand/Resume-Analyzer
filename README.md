@@ -61,7 +61,7 @@ App extracts text, candidate info, and computes similarity
 See which resumes match the JD best
 
 📸 Screenshot
-
+![Demo Screenshot](https://github.com/SamyakAnand/Resume-Analyzer/blob/main/images/Screenshot%202025-07-16%20012317.png)
 🙏 Credits
 Made as a practice project to learn NLP + Flask
 
