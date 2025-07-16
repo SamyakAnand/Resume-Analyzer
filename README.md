@@ -1,4 +1,4 @@
-# AI Resume Analyzer (Flask App)
+# AI Resume Analyzer 
 
 An interactive web application that analyzes candidate resumes against a target Job Description (JD) and computes a hybrid similarity score using TF-IDF, semantic embeddings (Sentence Transformers), and skill matching. Built with Flask, NLTK, scikit-learn, and a modern UI (Bootstrap), this tool helps HR teams, recruiters, and learners rank resumes by JD relevance in seconds.
 
