@@ -40,7 +40,7 @@ An interactive web application that analyzes candidate resumes against a target 
 
 ```bash
 # Clone the repository
-git clone https://github.com/YourUsername/ai-resume-analyzer.git
+git clone https://github.com/SamyakAnand/ai-resume-analyzer.git
 cd ai-resume-analyzer
 
 # (Recommended) Create virtual environment
@@ -108,6 +108,12 @@ Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 
 - GitHub: [@SamyakAnand](https://github.com/SamyakAnand)  
 - LinkedIn: [@samyakanand](https://www.linkedin.com/in/samyakanand/)
+
+- GitHub: [@Thottempudi Koushik
+](https://github.com/Koushik900)  
+- LinkedIn: [@Thottempudi Koushik
+]( https://www.linkedin.com/in/tk-koushik-1362bb200/
+)
 
 ---
 
