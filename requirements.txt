@@ -1,7 +1,7 @@
-streamlit
-pandas
+Flask
 pdfminer.six
 python-docx
 nltk
 scikit-learn
-flask
+sentence-transformers
+torch

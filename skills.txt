@@ -1,0 +1,203 @@
+# technical / it skills
+python
+java
+javascript
+c++
+c#
+ruby
+php
+swift
+kotlin
+go
+rust
+html5
+css3
+react
+angular
+vue.js
+node.js
+django
+flask
+laravel
+android
+ios
+flutter
+react native
+sql
+mysql
+postgresql
+mongodb
+firebase
+oracle
+cassandra
+aws
+azure
+gcp
+docker
+kubernetes
+terraform
+ci/cd
+jenkins
+pandas
+numpy
+tensorflow
+pytorch
+r
+tableau
+power bi
+sas
+ethical hacking
+penetration testing
+siem
+kali linux
+nist
+nlp
+computer vision
+deep learning
+gpt
+langchain
+openai
+solidity
+smart contracts
+ethereum
+web3
+dapps
+selenium
+junit
+postman
+load testing
+test automation
+
+# business / management skills
+agile
+scrum
+kanban
+jira
+trello
+waterfall
+prd
+roadmapping
+mvp
+a/b testing
+ux research
+financial modeling
+excel
+vba
+quickbooks
+sap
+bloomberg terminal
+seo
+sem
+ppc
+google ads
+meta ads
+email marketing
+hubspot
+crm
+salesforce
+cold calling
+negotiation
+pipeline management
+google analytics
+mixpanel
+looker
+recruitment
+talent acquisition
+payroll
+performance reviews
+dei
+
+# creative / design skills
+adobe photoshop
+illustrator
+indesign
+canva
+figma
+sketch
+wireframing
+prototyping
+user research
+adobe xd
+premiere pro
+after effects
+davinci resolve
+final cut pro
+blender
+maya
+autocad
+solidworks
+zbrush
+copywriting
+technical writing
+blogging
+seo writing
+grant writing
+audacity
+pro tools
+logic pro
+fl studio
+podcast editing
+
+# engineering / technical skills
+cad
+ansys
+cnc machining
+thermodynamics
+gd&t
+pcb design
+arduino
+raspberry pi
+iot
+embedded systems
+autocad civil 3d
+revit
+structural analysis
+gis
+process simulation
+hplc
+labview
+six sigma
+
+# healthcare skills
+ehr
+epic
+cerner
+hipaa
+medical coding
+icd-10
+patient care
+pcr
+crispr
+flow cytometry
+elisa
+cell culture
+bls
+acls
+patient assessment
+iv insertion
+ehr documentation
+
+# language / soft skills
+english
+spanish
+french
+mandarin
+leadership
+teamwork
+public speaking
+conflict resolution
+time management
+
+# miscellaneous skills
+welding
+carpentry
+plumbing
+electrical wiring
+survival skills
+navigation
+first aid
+foraging
+photography
+chess
+music production
+creative writing

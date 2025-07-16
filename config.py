@@ -1,0 +1,3 @@
+SKILLS_FILE = 'skills.txt'
+SENTENCE_TRANSFORMER_MODEL = 'all-MiniLM-L6-v2'
+

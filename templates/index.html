@@ -7,51 +7,48 @@
   <style>
     body {
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-attachment: fixed;
       min-height: 100vh;
       color: #f8f9fa;
       font-family: 'Segoe UI', sans-serif;
     }
     .card {
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      background: rgba(0,0,0,0.85);
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.8);
       color: #fff;
-      animation: fadeIn 1s ease;
+      animation: fadeSlideUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
+    @keyframes fadeSlideUp { to { opacity:1; transform: translateY(0); } }
     .header {
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      background: linear-gradient(270deg, #ff8a00, #e52e71, #9b00ff);
+      background-size: 600% 600%;
       padding: 20px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
       text-align: center;
+      animation: gradientFlow 8s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
     .header h2 {
       margin: 0;
       font-weight: 700;
       font-size: 2rem;
       color: #fff;
-      text-shadow: 0 0 5px rgba(255,255,255,0.6),
-                   0 0 10px rgba(255,138,0,0.8),
-                   0 0 15px rgba(255,138,0,0.8);
-      animation: glow 2s infinite alternate;
-    }
-    .header p {
-      margin: 5px 0 0;
-      font-size: 1.1rem;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px rgba(255,255,255,0.6),
-                        0 0 10px rgba(255,138,0,0.8),
-                        0 0 15px rgba(255,138,0,0.8); }
-      to   { text-shadow: 0 0 10px rgba(255,255,255,1),
-                        0 0 20px rgba(255,138,0,1),
-                        0 0 25px rgba(255,138,0,1); }
+      text-shadow: 0 0 5px rgba(255,255,255,0.6), 0 0 10px rgba(255,138,0,0.8);
     }
     textarea.form-control,
     input.form-control {
-      background-color: rgba(255,255,255,0.1);
-      color: #f8f9fa;
+      background-color: rgba(255,255,255,0.08) !important;
+      color: #f8f9fa !important;       /* Force text color white */
       border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
     textarea.form-control::placeholder,
     input.form-control::placeholder {
@@ -59,53 +56,58 @@
     }
     textarea.form-control:focus,
     input.form-control:focus {
-      background-color: rgba(255,255,255,0.15);
-      color: #fff;
+      background-color: rgba(255,255,255,0.15) !important;
+      color: #fff !important;
       border-color: #ff8a00;
-      box-shadow: 0 0 0 0.2rem rgba(255,138,0,.25);
+      box-shadow: 0 0 0 0.2rem rgba(255,138,0,.3);
+    }
+    input[type="file"] {
+      color: #f8f9fa !important; /* Make uploaded filename white */
     }
     input[type="file"]::file-selector-button {
       background: linear-gradient(90deg, #ff8a00, #e52e71);
-      color: #fff;
+      color: #fff !important;
       border: none;
       padding: 6px 12px;
       border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: all 0.3s ease;
     }
     input[type="file"]::file-selector-button:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
       background: linear-gradient(90deg, #e52e71, #ff8a00);
     }
     .btn-primary {
       background: linear-gradient(90deg, #ff8a00, #e52e71);
       border: none;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .btn-primary:hover {
       transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255,138,0,0.4);
     }
     .table-striped tbody tr:hover {
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.12);
     }
     .badge.bg-success {
       background: linear-gradient(45deg, #00c6ff, #0072ff);
+      font-size: 0.9rem;
     }
+    .alert { animation: fadeIn 0.8s ease; }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
     .footer {
       font-size: 0.85rem;
       color: #ddd;
       text-align: center;
       margin-top: 30px;
     }
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(45deg, #ff8a00, #e52e71);
       border-radius: 5px;
     }
     ::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -114,7 +116,7 @@
   <div class="card">
     <div class="header">
       <h2>📄 AI Resume Analyzer</h2>
-      <p>Upload resumes, paste JD, and get similarity scores!</p>
+      <p>Upload resumes, paste JD, and get powerful similarity insights!</p>
     </div>
     <div class="card-body">
       <form method="POST" enctype="multipart/form-data">
@@ -131,6 +133,17 @@
         </div>
       </form>
 
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
       {% if results %}
       <hr class="text-light">
       <h5 class="mt-4">📊 Results (Highest score first)</h5>
@@ -142,28 +155,33 @@
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
+              <th>Education</th>
+              <th>Experience (Years)</th>
+              <th>Skills</th>
               <th>Score (%)</th>
             </tr>
           </thead>
           <tbody>
-          {% for res in results %}
-            <tr>
-              <td>{{ res.filename }}</td>
-              <td>{{ res.name or '-' }}</td>
-              <td>{{ res.email or '-' }}</td>
-              <td>{{ res.phone or '-' }}</td>
-              <td><span class="badge bg-success">{{ res.score }}</span></td>
-            </tr>
-          {% endfor %}
+            {% for res in results %}
+              <tr>
+                <td>{{ res.filename }}</td>
+                <td>{{ res.name or '-' }}</td>
+                <td>{{ res.email or '-' }}</td>
+                <td>{{ res.phone or '-' }}</td>
+                <td>{{ res.education or '-' }}</td>
+                <td>{{ res.years_exp or '-' }}</td>
+                <td>{% if res.skills %}<small>{{ res.skills|truncate(50, True, '...') }}</small>{% else %}-{% endif %}</td>
+                <td><span class="badge bg-success">{{ res.score }}</span></td>
+              </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
       {% endif %}
     </div>
   </div>
-
   <div class="footer mt-4">
-    Built with Flask, NLTK, scikit-learn and ❤️ &middot;
+    Built with Flask, NLTK, scikit-learn, Sentence Transformers & ❤️ · 
     <a href="https://github.com/SamyakAnand" style="color: #f9d342;">GitHub</a>
   </div>
 </div>

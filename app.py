@@ -1,92 +1,60 @@
-from flask import Flask, render_template, request
-import tempfile
-from pdfminer.high_level import extract_text
-from docx import Document
-import re
-from nltk import word_tokenize, pos_tag, ne_chunk
-from nltk.tree import Tree
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from flask import Flask, render_template, request, flash
+from utils import extractor, scoring
+import config
 
 app = Flask(__name__)
+app.secret_key = 'dev'  # lightweight, non-secret placeholder
 
-def extract_text_from_pdf(file):
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp:
-        tmp.write(file.read())
-        return extract_text(tmp.name)
-
-def extract_text_from_docx(file):
-    doc = Document(file)
-    return "\n".join([p.text for p in doc.paragraphs])
-
-def extract_name(text):
-    lines = text.strip().split('\n')
-    ignore_titles = {'Data Scientist', 'Machine Learning Engineer', 'AI Engineer', 'Software Engineer'}
-    for line in lines[:5]:
-        if line.strip() and line.strip() not in ignore_titles:
-            tokens = word_tokenize(line)
-            if all(token[0].isupper() and token.isalpha() for token in tokens):
-                return line.strip()
-    tokens = word_tokenize(text)
-    tags = pos_tag(tokens)
-    chunks = ne_chunk(tags)
-    for chunk in chunks:
-        if isinstance(chunk, Tree) and chunk.label() == 'PERSON':
-            return ' '.join(c[0] for c in chunk.leaves())
-    return None
-
-def extract_basic_info(text):
-    name = extract_name(text)
-    email = re.search(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", text)
-    phone = re.search(r"(\+\d{1,3}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}", text)
-    return {
-        'name': name,
-        'email': email.group() if email else None,
-        'phone': phone.group() if phone else None
-    }
-
-def match_resume_to_jd(resume_text, jd_text):
-    vectorizer = TfidfVectorizer(stop_words='english')
-    vectors = vectorizer.fit_transform([resume_text, jd_text])
-    return round(cosine_similarity(vectors[0], vectors[1])[0][0] * 100, 2)
+# Initialize once
+skills_list = extractor.load_skills(config.SKILLS_FILE)
+st_model = scoring.load_st_model(config.SENTENCE_TRANSFORMER_MODEL)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     results = []
     if request.method == 'POST':
-        jd_text = request.form.get('jd_text')
-        top_n = request.form.get('top_n', '5')
+        jd_text = request.form.get('jd_text', '')
         files = request.files.getlist('resumes')
-
         if jd_text.strip() and files:
-            all_results = []
+            cleaned_jd = extractor.clean_text(jd_text)
+            jd_skills = extractor.extract_skills(jd_text, skills_list)
             for file in files:
                 filename = file.filename
+                text = None
                 if filename.endswith('.pdf'):
-                    text = extract_text_from_pdf(file)
+                    text = extractor.extract_text_from_pdf(file)
                 elif filename.endswith('.docx'):
-                    text = extract_text_from_docx(file)
+                    text = extractor.extract_text_from_docx(file)
                 else:
+                    flash(f"❌ Unsupported file type: {filename}", 'danger')
                     continue
 
-                info = extract_basic_info(text)
-                score = match_resume_to_jd(text, jd_text)
+                if not text or not text.strip():
+                    flash(f"⚠️ Could not extract text from {filename}", 'warning')
+                    continue
 
-                all_results.append({
+                info = extractor.extract_basic_info(text)
+                resume_skills = extractor.extract_skills(text, skills_list)
+                education = extractor.extract_education(text)
+                years_exp = extractor.extract_experience_years(text)
+
+                merged_text = extractor.clean_text(text) + ' ' + ' '.join(resume_skills) + ' ' + education
+
+                score = scoring.hybrid_score_tfidf_st(
+                    merged_text, cleaned_jd, resume_skills, jd_skills, st_model
+                )
+
+                results.append({
                     'filename': filename,
-                    'name': info.get('name'),
-                    'email': info.get('email'),
-                    'phone': info.get('phone'),
+                    'name': info['name'],
+                    'email': info['email'],
+                    'phone': info['phone'],
+                    'education': education,
+                    'years_exp': years_exp,
+                    'skills': ', '.join(resume_skills),
                     'score': score
                 })
-
-            all_results = sorted(all_results, key=lambda x: x['score'], reverse=True)
-            try:
-                top_n_int = int(top_n)
-                results = all_results[:top_n_int]
-            except ValueError:
-                results = all_results
-
+            results.sort(key=lambda x: x['score'], reverse=True)
     return render_template('index.html', results=results)
 
 if __name__ == '__main__':
