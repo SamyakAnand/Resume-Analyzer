@@ -99,8 +99,8 @@ pip install -r requirements.txt
 
 ## 🙏 Credits
 
-Built by [Samyak Anand](https://github.com/SamyakAnand),[@Thottempudi Koushik
-](https://github.com/Koushik900),[@Sai vardhan Kalvala
+Built by [Samyak Anand](https://github.com/SamyakAnand), [@Thottempudi Koushik
+](https://github.com/Koushik900), [@Sai vardhan Kalvala
 ](https://github.com/saivardhankalvala)
 Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 
