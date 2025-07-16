@@ -1,7 +1,3 @@
-# README.md
-
----
-
 # AI Resume Analyzer (Flask App)
 
 An interactive web application that analyzes candidate resumes against a target Job Description (JD) and computes a hybrid similarity score using TF-IDF, semantic embeddings (Sentence Transformers), and skill matching. Built with Flask, NLTK, scikit-learn, and a modern UI (Bootstrap), this tool helps HR teams, recruiters, and learners rank resumes by JD relevance in seconds.
@@ -10,19 +6,19 @@ An interactive web application that analyzes candidate resumes against a target 
 
 ## ✨ Features
 
-- Upload multiple resumes in PDF or DOCX
-- Paste or type a Job Description
-- Auto-extract:
+- Upload multiple resumes in PDF or DOCX  
+- Paste or type a Job Description  
+- Auto-extract:  
   - Name, email, phone  
   - Education  
   - Skills  
-  - Estimated years of experience
-- Compute hybrid similarity:
+  - Estimated years of experience  
+- Compute hybrid similarity:  
   - TF-IDF + cosine similarity  
   - Semantic similarity (Sentence Transformers)  
-  - Skill overlap
-- Beautiful animated UI & responsive table
-- Download-ready, production-friendly code structure
+  - Skill overlap  
+- Beautiful animated UI & responsive table  
+- Download-ready, production-friendly code structure  
 
 ---
 
@@ -32,7 +28,25 @@ An interactive web application that analyzes candidate resumes against a target 
 - **NLP:** NLTK, scikit-learn, Sentence Transformers  
 - **Parsing:** pdfminer.six, python-docx  
 - **Frontend:** Bootstrap 5, custom CSS, responsive table  
-- **Extra:** Jinja2 templates, modular utils, config structure
+- **Extra:** Jinja2 templates, modular utils, config structure  
+
+---
+
+## 📁 Project Structure
+
+```bash
+Resume-Analyzer/
+├── app.py                 # Main Flask application
+├── config.py              # Configuration file (secret key, model names, etc.)
+├── requirements.txt       # Python dependencies
+├── README.md              # Project documentation
+├── templates/
+│   └── index.html         # Frontend UI template (Jinja2 + Bootstrap)
+├── utils/
+│   ├── extractor.py       # Text extraction & parsing functions
+│   └── scoring.py         # Similarity scoring functions (TF-IDF & SentenceTransformer)
+└── skills.txt             # List of skills for keyword extraction
+```
 
 ---
 
@@ -70,7 +84,7 @@ pip install -r requirements.txt
    - Education  
    - Experience (years)  
    - Skills  
-   - Score (%)
+   - Score (%)  
 
 ---
 
@@ -99,9 +113,13 @@ pip install -r requirements.txt
 
 ## 🙏 Credits
 
-Built by [Samyak Anand](https://github.com/SamyakAnand), [@Thottempudi Koushik
-](https://github.com/Koushik900), [@Sai vardhan Kalvala
-](https://github.com/saivardhankalvala)
+Built by:
+- [Samyak Anand](https://github.com/SamyakAnand)  
+- [Thottempudi Koushik](https://github.com/Koushik900)  
+- [Sai Vardhan Kalvala](https://github.com/saivardhankalvala)  
+- [Swetha](https://github.com/swethar6232)  
+- [Rasmitha Ravi](https://github.com/RasmithaRavi)  
+
 Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 
 ---
@@ -109,19 +127,19 @@ Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 ## 🤝 Connect
 
 - GitHub: [@SamyakAnand](https://github.com/SamyakAnand)  
-- LinkedIn: [@samyakanand](https://www.linkedin.com/in/samyakanand/)
+- LinkedIn: [@samyakanand](https://www.linkedin.com/in/samyakanand/)  
 
-- GitHub: [@Thottempudi Koushik
-](https://github.com/Koushik900)  
-- LinkedIn: [@Thottempudi Koushik
-]( https://www.linkedin.com/in/tk-koushik-1362bb200/
-)
+- GitHub: [@Koushik900](https://github.com/Koushik900)  
+- LinkedIn: [Thottempudi Koushik](https://www.linkedin.com/in/tk-koushik-1362bb200/)  
 
-- GitHub: [@Sai vardhan Kalvala
-](https://github.com/saivardhankalvala)  
-- LinkedIn: [@Sai vardhan Kalvala
-](https://in.linkedin.com/in/saivardhankalvala16
-)
+- GitHub: [@saivardhankalvala](https://github.com/saivardhankalvala)  
+- LinkedIn: [Sai Vardhan Kalvala](https://in.linkedin.com/in/saivardhankalvala16)  
+
+- GitHub: [@swethar6232](https://github.com/swethar6232)  
+
+
+- GitHub: [@RasmithaRavi](https://github.com/RasmithaRavi)  
+
 ---
 
 ## ⚖️ License
