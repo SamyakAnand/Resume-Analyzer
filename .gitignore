@@ -1,3 +1,4 @@
 nltk_data
 data
 ex.py
+__pycache__

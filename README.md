@@ -93,7 +93,7 @@ pip install -r requirements.txt
 
 ## 🖼 Screenshot
 
-![Demo Screenshot](https://github.com/SamyakAnand/Resume-Analyzer/blob/main/images/Screenshot%202025-07-16%20021852.png)
+![Demo Screenshot](https://github.com/SamyakAnand/Resume-Analyzer/blob/main/images/Screenshot%202025-07-16%20192647.png)
 
 ---
 
