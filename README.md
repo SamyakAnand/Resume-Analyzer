@@ -99,7 +99,9 @@ pip install -r requirements.txt
 
 ## 🙏 Credits
 
-Built by [Samyak Anand](https://github.com/SamyakAnand).  
+Built by [Samyak Anand](https://github.com/SamyakAnand),[@Thottempudi Koushik
+](https://github.com/Koushik900),[@Sai vardhan Kalvala
+](https://github.com/saivardhankalvala)
 Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 
 ---
@@ -115,6 +117,11 @@ Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 ]( https://www.linkedin.com/in/tk-koushik-1362bb200/
 )
 
+- GitHub: [@Sai vardhan Kalvala
+](https://github.com/saivardhankalvala)  
+- LinkedIn: [@Sai vardhan Kalvala
+](https://in.linkedin.com/in/saivardhankalvala16
+)
 ---
 
 ## ⚖️ License
