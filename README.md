@@ -1,53 +1,51 @@
+# README.md
+
+---
+
 # AI Resume Analyzer (Flask App)
 
-An interactive web application that compares candidate resumes against a target Job Description (JD) and computes a similarity score. Built with Flask, NLTK, and scikit-learn, this tool streamlines the screening process for recruiters, HR teams, and learners by ranking resumes based on how well they match the JD.
+An interactive web application that analyzes candidate resumes against a target Job Description (JD) and computes a hybrid similarity score using TF-IDF, semantic embeddings (Sentence Transformers), and skill matching. Built with Flask, NLTK, scikit-learn, and a modern UI (Bootstrap), this tool helps HR teams, recruiters, and learners rank resumes by JD relevance in seconds.
 
 ---
 
-## Table of Contents
+## ✨ Features
 
-- [Features](#features)  
-- [Tech Stack](#tech-stack)  
-- [Installation](#installation)  
-- [Usage](#usage)  
-- [How It Works](#how-it-works)  
-- [Screenshot](#screenshot)  
-- [Credits](#credits)  
-- [Connect](#connect)  
-- [License](#license)  
-
----
-
-## Features
-
-- Upload single or multiple resumes in PDF or DOCX format  
-- Paste or type in a Job Description for comparison  
-- Automatic extraction of candidate name, email, and phone number  
-- TF-IDF vectorization and cosine similarity calculation  
-- Rank resumes by similarity score in a responsive, sortable table  
-- Clean, modern UI built with Bootstrap and custom CSS  
+- Upload multiple resumes in PDF or DOCX
+- Paste or type a Job Description
+- Auto-extract:
+  - Name, email, phone  
+  - Education  
+  - Skills  
+  - Estimated years of experience
+- Compute hybrid similarity:
+  - TF-IDF + cosine similarity  
+  - Semantic similarity (Sentence Transformers)  
+  - Skill overlap
+- Beautiful animated UI & responsive table
+- Download-ready, production-friendly code structure
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
-- Python (Flask) for the web application backend  
-- NLTK for natural language processing and named entity recognition  
-- scikit-learn for TF-IDF vectorization and cosine similarity  
-- pdfminer.six and python-docx for parsing PDF and DOCX documents  
-- Bootstrap for responsive frontend design  
+- **Backend:** Python (Flask)  
+- **NLP:** NLTK, scikit-learn, Sentence Transformers  
+- **Parsing:** pdfminer.six, python-docx  
+- **Frontend:** Bootstrap 5, custom CSS, responsive table  
+- **Extra:** Jinja2 templates, modular utils, config structure
 
 ---
 
-## Installation
+## 📦 Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/YourUsername/ai-resume-analyzer.git
 cd ai-resume-analyzer
 
-# (Optional) Create and activate a virtual environment
+# (Recommended) Create virtual environment
 python -m venv venv
+# Activate:
 # Windows:
 venv\Scripts\activate
 # macOS/Linux:
@@ -59,48 +57,65 @@ pip install -r requirements.txt
 
 ---
 
-## Usage
+## 🚀 Usage
 
-1. Start the Flask server:  
+1. Ensure a `skills.txt` file exists in the project root (one skill per line).  
+2. Start the Flask server:
    ```bash
    python app.py
    ```
-2. Open your browser and navigate to `http://127.0.0.1:5000`.  
-3. Upload one or more resumes and paste the target JD.  
-4. View similarity scores and ranked results.  
+3. Open your browser at [http://127.0.0.1:5000](http://127.0.0.1:5000)  
+4. Upload resumes & paste JD → view ranked results with:
+   - Name, email, phone  
+   - Education  
+   - Experience (years)  
+   - Skills  
+   - Score (%)
 
 ---
 
-## How It Works
+## 🧠 How It Works
 
-1. The app reads uploaded files (PDF/DOCX) and extracts text.  
-2. Named entity recognition identifies candidate names, emails, and phone numbers.  
-3. TF-IDF vectorizer transforms both resumes and the JD into numeric feature vectors.  
-4. Cosine similarity measures the closeness between each resume and the JD.  
-5. Results are sorted and displayed in a responsive table for easy review.  
+1. Parses uploaded PDF/DOCX resumes  
+2. Cleans and tokenizes text (NLTK)  
+3. Extracts:
+   - Name, email, phone (regex)  
+   - Education keywords  
+   - Skills from `skills.txt`  
+   - Experience years from patterns  
+4. Computes:
+   - TF-IDF + cosine similarity (scikit-learn)  
+   - Semantic similarity (Sentence Transformers)  
+   - Skill overlap percentage  
+5. Combines into final weighted score → displays sorted table  
 
 ---
 
-## Screenshot
+## 🖼 Screenshot
 
 ![Demo Screenshot](https://github.com/SamyakAnand/Resume-Analyzer/blob/main/images/Screenshot%202025-07-16%20021852.png)
 
 ---
 
-## Credits
+## 🙏 Credits
 
-This project was created as a hands-on exercise in NLP and web development. Special thanks to the Python, NLTK, and scikit-learn communities for their invaluable resources.
-
----
-
-## Connect
-
-- GitHub: [Samyak Anand](https://github.com/SamyakAnand)  
-- LinkedIn: [@samyakanand](https://www.linkedin.com/in/samyakanand/)  
+Built by [Samyak Anand](https://github.com/SamyakAnand).  
+Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 
 ---
 
-## License
+## 🤝 Connect
 
-This project is released under the MIT License.  
-Feel free to use, modify, and distribute it in your own projects.
+- GitHub: [@SamyakAnand](https://github.com/SamyakAnand)  
+- LinkedIn: [@samyakanand](https://www.linkedin.com/in/samyakanand/)
+
+---
+
+## ⚖️ License
+
+Released under the MIT License — use, modify, and share freely!
+
+---
+
+If you'd like:
+✅ I can also generate this as a ready `README.md` with badges and an animated GIF. Just say **`yes`**! 🚀
