@@ -122,6 +122,3 @@ Thanks to the Flask, NLTK, scikit-learn, and Sentence Transformers communities.
 Released under the MIT License — use, modify, and share freely!
 
 ---
-
-If you'd like:
-✅ I can also generate this as a ready `README.md` with badges and an animated GIF. Just say **`yes`**! 🚀
