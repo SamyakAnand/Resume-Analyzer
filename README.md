@@ -77,8 +77,8 @@ Resume-Analyzer/
 
 ```bash
 # Clone the repository
-git clone https://github.com/SamyakAnand/ai-resume-analyzer.git
-cd ai-resume-analyzer
+git clone https://github.com/SamyakAnand/Resume-Analyzer.git
+cd Resume-Analyzer
 
 # (Optional) Create virtual environment
 python -m venv venv
